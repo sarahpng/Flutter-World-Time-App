@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:world_time/pages/home.dart';
-import 'package:world_time/pages/choose_location.dart';
-import 'package:world_time/pages/loading.dart';
+import 'package:world_time_app/views/country_time_view.dart';
 
-void main() => runApp(MaterialApp(
-  initialRoute: '/',
-  routes: {
-    '/': (context) => Loading(),
-    '/home': (context) => Home(),
-    '/location': (context) => ChooseLocation(),
+void main() {
+  runApp(const MyApp());
+}
 
-  },
-));
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const CountryTimeView(),
+    );
+  }
+}
