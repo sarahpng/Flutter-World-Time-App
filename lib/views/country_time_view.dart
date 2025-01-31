@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:world_time_app/services/time_provider.dart';
@@ -36,19 +35,59 @@ class _CountryTimeViewState extends State<CountryTimeView> {
             timeProvider..fetch(location: 'Karachi', continent: 'Asia'),
         child: Consumer<TimeProvider>(builder: (context, provider, child) {
           return NotificationListener(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(provider.location),
-              Text(provider.time),
-              TextButton(
-                onPressed: () {
-                  provider.fetch(location: 'Tokyo', continent: 'Asia');
-                },
-                child: Text('Fetch new data'),
+              child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(provider.image),
+                fit: BoxFit.cover,
               ),
-            ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 150, 10, 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    provider.time,
+                    style: TextStyle(color: provider.fontColor, fontSize: 50),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    provider.location,
+                    style: TextStyle(color: provider.fontColor, fontSize: 18),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      print('tap');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: provider.fontColor,
+                        ),
+                        Text(
+                          'Select Location',
+                          style: TextStyle(
+                            color: provider.fontColor,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ));
         }),
       ),
