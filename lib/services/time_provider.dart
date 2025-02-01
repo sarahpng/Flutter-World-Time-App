@@ -36,7 +36,6 @@ class TimeProvider extends ChangeNotifier {
 
     _image = _isDayTime ? dayTime : nightTime;
     _fontColor = _isDayTime ? Colors.black : Colors.white;
-    print(_location);
     notifyListeners();
   }
 
