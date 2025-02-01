@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:world_time_app/constants/routes.dart';
 import 'package:world_time_app/services/time_provider.dart';
 
 class CountryTimeView extends StatefulWidget {
@@ -66,7 +67,7 @@ class _CountryTimeViewState extends State<CountryTimeView> {
                   ),
                   InkWell(
                     onTap: () {
-                      print('tap');
+                      Navigator.pushNamed(context, locations);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +85,13 @@ class _CountryTimeViewState extends State<CountryTimeView> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  InkWell(
+                    child: Text("press"),
+                    onTap: () {
+                      provider.fetch(location: 'Tokyo', continent: 'Asia');
+                    },
+                  ),
                 ],
               ),
             ),

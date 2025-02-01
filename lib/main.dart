@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:world_time_app/constants/routes.dart';
+import 'package:world_time_app/views/country_list_view.dart';
 import 'package:world_time_app/views/country_time_view.dart';
 
 void main() {
@@ -13,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      routes: {
+        // '/': (context) => CountryTimeView(),
+        locations: (context) => CountryListView(),
+      },
       home: const CountryTimeView(),
     );
   }

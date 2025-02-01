@@ -16,18 +16,22 @@ class TimeProvider extends ChangeNotifier {
   String get image => _image;
   Color get fontColor => _fontColor;
 
-  void fetch({required String location, required String continent}) async {
+  Future<void> fetch(
+      {required String location, required String continent}) async {
     final worldTime = await timezone.fetchTime(continent, location);
     _location = location;
 
     _dateTime = DateTime.parse(worldTime.dateTime);
     _time = (DateTime.parse('$_dateTime')).toString().substring(11, 16);
-    _isDayTime = int.parse(_time.substring(0, 1)) >= 6 &&
-            int.parse(_time.substring(0, 1)) <= 20
+
+    _isDayTime = int.parse(_time.substring(0, 2)) >= 6 &&
+            int.parse(_time.substring(0, 2)) <= 20
         ? true
         : false;
+
     _image = _isDayTime ? dayTime : nightTime;
     _fontColor = _isDayTime ? Colors.black : Colors.white;
+    print(_location);
     notifyListeners();
   }
 
