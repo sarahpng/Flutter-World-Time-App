@@ -62,7 +62,15 @@ flutter:
   assets:
     - images/day.jpg
     - images/night.jpg
-    - images/grey.jpeg
+    - images/white.png
+    - images/flags/hungary.png
+    - images/flags/japan.png
+    - images/flags/norway.png
+    - images/flags/pakistan.png
+    - images/flags/russia.png
+    - images/flags/saudi-arabia.png
+    - images/flags/slovakia.png
+    - images/flags/turkey.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

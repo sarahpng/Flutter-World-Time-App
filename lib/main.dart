@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:world_time_app/constants/routes.dart';
+import 'package:provider/provider.dart';
+
+import 'package:world_time_app/services/time_provider.dart';
 import 'package:world_time_app/views/country_list_view.dart';
 import 'package:world_time_app/views/country_time_view.dart';
 
@@ -13,13 +15,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      routes: {
-        // '/': (context) => CountryTimeView(),
-        locations: (context) => CountryListView(),
-      },
-      home: const CountryTimeView(),
+    return ChangeNotifierProvider<TimeProvider>(
+      create: (context) => TimeProvider()
+        ..fetch(continent: 'Asia', location: 'Karachi', country: 'Pakistan'),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        routes: {
+          '/home': (context) => CountryTimeView(),
+          '/location': (context) => CountryListView(),
+        },
+        home: CountryTimeView(),
+      ),
     );
   }
 }

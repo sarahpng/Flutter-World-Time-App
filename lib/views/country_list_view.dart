@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:world_time_app/constants/country_list.dart';
+
 import 'package:world_time_app/services/time_provider.dart';
 
 class CountryListView extends StatefulWidget {
@@ -10,15 +12,17 @@ class CountryListView extends StatefulWidget {
 }
 
 class _CountryListViewState extends State<CountryListView> {
-  late TimeProvider timeProvider;
-  @override
-  void initState() {
-    timeProvider = TimeProvider();
-    super.initState();
-  }
+  // late TimeProvider timeProvider;
+
+  // @override
+  // void initState() {
+  //   timeProvider = TimeProvider();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final timeProvider = Provider.of<TimeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Select Location'),
@@ -27,12 +31,19 @@ class _CountryListViewState extends State<CountryListView> {
           itemCount: locations.length,
           itemBuilder: (context, index) {
             return Card(
+              elevation: 0,
               child: ListTile(
-                  title: Text(locations[index].city),
+                  leading: Image(
+                      width: 30,
+                      height: 30,
+                      image: AssetImage(locations[index].flag)),
+                  title: Text(locations[index].country),
                   onTap: () {
                     timeProvider.fetch(
-                        location: locations[index].city,
-                        continent: locations[index].continent);
+                      location: locations[index].city,
+                      continent: locations[index].continent,
+                      country: locations[index].country,
+                    );
                     Navigator.pop(context);
                   }),
             );

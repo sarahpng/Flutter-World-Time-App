@@ -17,9 +17,14 @@ class TimeProvider extends ChangeNotifier {
   Color get fontColor => _fontColor;
 
   Future<void> fetch(
-      {required String location, required String continent}) async {
-    final worldTime = await timezone.fetchTime(continent, location);
-    _location = location;
+      {required String location,
+      required String continent,
+      required String country}) async {
+    final worldTime = await timezone.fetchTime(
+      continent,
+      location,
+    );
+    _location = country;
 
     _dateTime = DateTime.parse(worldTime.dateTime);
     _time = (DateTime.parse('$_dateTime')).toString().substring(11, 16);

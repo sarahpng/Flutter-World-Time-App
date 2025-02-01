@@ -13,7 +13,6 @@ class Timezone {
     String city,
   ) async {
     final response = await http.get(Uri.parse('$_url$continent%2F$city'));
-    print('$_url$continent%2F$city');
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
 

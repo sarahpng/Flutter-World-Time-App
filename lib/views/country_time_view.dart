@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:world_time_app/constants/routes.dart';
+
 import 'package:world_time_app/services/time_provider.dart';
 
 class CountryTimeView extends StatefulWidget {
@@ -12,91 +12,72 @@ class CountryTimeView extends StatefulWidget {
 }
 
 class _CountryTimeViewState extends State<CountryTimeView> {
-  late TimeProvider timeProvider;
   @override
   void initState() {
     super.initState();
-    timeProvider = TimeProvider();
+    // timeProvider = TimeProvider();
     Timer.periodic(Duration(seconds: 1), (timer) {
-      timeProvider.updateTime();
+      TimeProvider().updateTime();
     });
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    timeProvider.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final timeProvider = Provider.of<TimeProvider>(context);
     return Scaffold(
-      body: ChangeNotifierProvider(
-        create: (context) =>
-            timeProvider..fetch(location: 'Karachi', continent: 'Asia'),
-        child: Consumer<TimeProvider>(builder: (context, provider, child) {
-          return NotificationListener(
-              child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(provider.image),
-                fit: BoxFit.cover,
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(timeProvider.image),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 150, 10, 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                timeProvider.time,
+                style: TextStyle(color: timeProvider.fontColor, fontSize: 50),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 150, 10, 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    provider.time,
-                    style: TextStyle(color: provider.fontColor, fontSize: 50),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    provider.location,
-                    style: TextStyle(color: provider.fontColor, fontSize: 18),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, locations);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: provider.fontColor,
-                        ),
-                        Text(
-                          'Select Location',
-                          style: TextStyle(
-                            color: provider.fontColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                timeProvider.location,
+                style: TextStyle(color: timeProvider.fontColor, fontSize: 18),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/location');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: timeProvider.fontColor,
                     ),
-                  ),
-                  InkWell(
-                    child: Text("press"),
-                    onTap: () {
-                      provider.fetch(location: 'Tokyo', continent: 'Asia');
-                    },
-                  ),
-                ],
+                    Text(
+                      'Select Location',
+                      style: TextStyle(
+                        color: timeProvider.fontColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ));
-        }),
+            ],
+          ),
+        ),
       ),
     );
   }

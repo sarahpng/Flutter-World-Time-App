@@ -1,2 +1,2 @@
-const locations = '/locations';
-const home = '/';
+const location = '/locations';
+const home = '/home';
