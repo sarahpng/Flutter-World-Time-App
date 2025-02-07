@@ -1,16 +1,15 @@
 # world_time_app
 
-A new Flutter project.
+- use HTTP package to fetch the time
+- updates the time using provider state management
 
-## Getting Started
+## How to run
+`flutter pub get`
+`flutter run`
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Preview
+<div align="left">
+      <a href="https://youtube.com/shorts/VRRqHb_ZJQ0?feature=share">
+         <img src="https://github.com/sarahpng/Flutter-World-Time-App/blob/main/world%20time%20app%20ss.png?raw=true" style="width:50%;">
+      </a>
+</div>
