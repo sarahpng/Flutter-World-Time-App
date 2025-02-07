@@ -16,10 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TimeProvider>(
-      create: (context) => TimeProvider()
-        ..fetch(continent: 'Asia', location: 'Karachi', country: 'Pakistan'),
+      create: (context) => TimeProvider()..fetch(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'World Time',
         routes: {
           '/home': (context) => CountryTimeView(),
           '/location': (context) => CountryListView(),

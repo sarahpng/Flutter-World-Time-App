@@ -4,27 +4,37 @@ import 'package:world_time_app/services/timezone_repositories.dart';
 
 class TimeProvider extends ChangeNotifier {
   final Timezone timezone = Timezone();
-  String _location = "";
-  String _time = "";
+  String _city = 'Karachi';
+  String _continent = 'Asia';
+  String _country = 'Pakistan';
+  String _time = '';
   bool _isDayTime = true;
   DateTime _dateTime = DateTime(0);
   String _image = startingbg;
   Color _fontColor = Colors.white;
 
-  String get location => _location;
+  String get country => _country;
   String get time => _time;
   String get image => _image;
   Color get fontColor => _fontColor;
 
-  Future<void> fetch(
-      {required String location,
-      required String continent,
-      required String country}) async {
+  Future<void> update({
+    required String city,
+    required String continent,
+    required String country,
+  }) async {
+    _city = city;
+    _continent = continent;
+    _country = country;
+    await fetch();
+    notifyListeners();
+  }
+
+  Future<void> fetch() async {
     final worldTime = await timezone.fetchTime(
-      continent,
-      location,
+      _continent,
+      _city,
     );
-    _location = country;
 
     _dateTime = DateTime.parse(worldTime.dateTime);
     _time = (DateTime.parse('$_dateTime')).toString().substring(11, 16);

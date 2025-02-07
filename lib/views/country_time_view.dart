@@ -48,7 +48,7 @@ class _CountryTimeViewState extends State<CountryTimeView> {
                 height: 10,
               ),
               Text(
-                timeProvider.location,
+                timeProvider.country,
                 style: TextStyle(color: timeProvider.fontColor, fontSize: 18),
               ),
               SizedBox(
