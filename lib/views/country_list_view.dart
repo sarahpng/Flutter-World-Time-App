@@ -39,11 +39,12 @@ class _CountryListViewState extends State<CountryListView> {
                       image: AssetImage(locations[index].flag)),
                   title: Text(locations[index].country),
                   onTap: () {
-                    timeProvider.fetch(
-                      location: locations[index].city,
+                    timeProvider.update(
+                      city: locations[index].city,
                       continent: locations[index].continent,
                       country: locations[index].country,
                     );
+                    // timeProvider.fetch();
                     Navigator.pop(context);
                   }),
             );
