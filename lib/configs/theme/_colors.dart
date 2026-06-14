@@ -11,9 +11,9 @@ sealed class AppColors {
 
   // Gradients
   static const gradientPrimary = LinearGradient(
-    colors: [primary, primary, secondary],
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
+    colors: [primary, Color(0xff161311)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
   );
 }
 

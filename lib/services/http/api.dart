@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:world_time/configs/configs.dart';
 import 'package:world_time/env.dart';
-import 'package:world_time/services/app_log.dart';
 import 'package:world_time/services/http/urls.dart';
 
 abstract class Api {

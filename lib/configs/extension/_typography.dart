@@ -1,7 +1,8 @@
 part of '../configs.dart';
 
 extension SuperAppText on TextStyle {
-  TextStyle get sfPro => copyWith(fontFamily: FontFamily.manrope);
+  TextStyle get manrope => copyWith(fontFamily: FontFamily.manrope);
+  TextStyle get playfair => copyWith(fontFamily: FontFamily.playFairDisplay);
 
   /// get custom font size
   TextStyle fs(double size) => copyWith(fontSize: size);
