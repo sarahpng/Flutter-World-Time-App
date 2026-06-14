@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-// import 'package:ai_chart_analysis/gen/assets/fonts.gen.dart';
-// import 'package:ai_chart_analysis/l10n/app_localizations.dart';
-// import 'package:ai_chart_analysis/services/fault/faults.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,8 +8,9 @@ import 'package:supercharged/supercharged.dart';
 
 export 'package:recase/recase.dart';
 export 'package:supercharged/supercharged.dart';
-import 'package:navigation_history_observer/navigation_history_observer.dart';
+import 'package:world_time/gen/assets/fonts.gen.dart';
 import 'package:world_time/services/fault/faults.dart';
+import 'package:navigation_history_observer/navigation_history_observer.dart';
 export 'package:themed/themed.dart';
 
 part 'theme/_theme_data.dart';
